@@ -1,7 +1,7 @@
 import { App, Notice } from 'obsidian'
 import { useState } from 'react'
 
-import { DEFAULT_PROVIDERS, PROVIDER_TYPES_INFO } from '../../../constants'
+import { PROVIDER_TYPES_INFO } from '../../../constants'
 import { getProviderClient } from '../../../core/llm/manager'
 import { supportedDimensionsForIndex } from '../../../database/schema'
 import SmartComposerPlugin from '../../../main'
@@ -39,8 +39,8 @@ function AddEmbeddingModelModalComponent({
   onClose,
 }: AddEmbeddingModelModalComponentProps) {
   const [formData, setFormData] = useState<Omit<EmbeddingModel, 'dimension'>>({
-    providerId: DEFAULT_PROVIDERS[0].id,
-    providerType: DEFAULT_PROVIDERS[0].type,
+    providerId: 'openai',
+    providerType: 'openai',
     id: '',
     model: '',
     outputDimension: undefined,
@@ -168,6 +168,10 @@ function AddEmbeddingModelModalComponent({
             )
             if (!provider) {
               new Notice(`Provider with ID ${value} not found`)
+              return
+            }
+            if (provider.type === 'amplify') {
+              new Notice('Amplify does not currently support embedding models')
               return
             }
             setFormData((prev) => ({

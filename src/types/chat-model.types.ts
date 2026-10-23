@@ -138,6 +138,10 @@ export const chatModelSchema = z.discriminatedUnion('providerType', [
     ...baseChatModelSchema.shape,
   }),
   z.object({
+    providerType: z.literal('amplify'),
+    ...baseChatModelSchema.shape,
+  }),
+  z.object({
     providerType: z.literal('openai-compatible'),
     ...baseChatModelSchema.shape,
   }),

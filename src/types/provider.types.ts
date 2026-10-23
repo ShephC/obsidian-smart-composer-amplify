@@ -110,6 +110,10 @@ export const llmProviderSchema = z.discriminatedUnion('type', [
     }),
   }),
   z.object({
+    type: z.literal('amplify'),
+    ...baseLlmProviderSchema.shape,
+  }),
+  z.object({
     type: z.literal('openai-compatible'),
     ...baseLlmProviderSchema.shape,
     baseUrl: z

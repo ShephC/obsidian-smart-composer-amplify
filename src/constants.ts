@@ -197,6 +197,14 @@ export const PROVIDER_TYPES_INFO = {
       },
     ],
   },
+  amplify: {
+    label: 'Amplify',
+    defaultProviderId: 'amplify',
+    requireApiKey: true,
+    requireBaseUrl: false,
+    supportEmbedding: false,
+    additionalSettings: [],
+  },
   'openai-compatible': {
     label: 'OpenAI Compatible',
     defaultProviderId: null, // no default provider for this type

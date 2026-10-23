@@ -2,6 +2,7 @@ import { SmartComposerSettings } from '../../settings/schema/setting.types'
 import { ChatModel } from '../../types/chat-model.types'
 import { LLMProvider } from '../../types/provider.types'
 
+import { AmplifyProvider } from './amplifyProvider'
 import { AnthropicProvider } from './anthropic'
 import { AnthropicClaudeCodeProvider } from './anthropicClaudeCodeProvider'
 import { AzureOpenAIProvider } from './azureOpenaiProvider'
@@ -96,6 +97,9 @@ export function getProviderClient({
     }
     case 'azure-openai': {
       return new AzureOpenAIProvider(provider)
+    }
+    case 'amplify': {
+      return new AmplifyProvider(provider)
     }
     case 'openai-compatible': {
       return new OpenAICompatibleProvider(provider)
